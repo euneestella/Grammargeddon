@@ -29,6 +29,13 @@ def run_ollama(message):
 
     return response
 
+# Update the page configuration
+st.set_page_config(
+    page_title="Grammargeddon",
+    page_icon="👽",
+    layout="centered",
+    initial_sidebar_state="auto"
+)
 
 def main():
     st.title("👽 Grammargeddon")
