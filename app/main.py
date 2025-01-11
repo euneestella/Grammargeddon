@@ -102,20 +102,23 @@ def main():
     """, unsafe_allow_html=True)
 
     if st.session_state.history:
-        for speaker, message in st.session_state.history:
-            if speaker == "User":
+        conversations = [(st.session_state.history[i], st.session_state.history[i + 1])
+                         for i in range(0, len(st.session_state.history), 2)]
+
+        for user_msg, bot_msg in reversed(conversations):
+            if user_msg[0] == "User":
                 st.markdown(
-                    f"<div class='user-message'>{message}</div>",
+                    f"<div class='user-message'>{user_msg[1]}</div>",
                     unsafe_allow_html=True
                 )
-            else:
+            if bot_msg[0] == "Bot":
                 bot_message = f"""
                 <div class='bot-message'>
                     <div style='background-color: #d8d8d8; color: #212121; border-radius: 10px; padding: 10px; margin: 5px;'>
                         <br/>
                 """
 
-                response_lines = message.split("\n")
+                response_lines = bot_msg[1].split("\n")
                 for line in response_lines:
                     if line.startswith("### "):
                         bot_message += f"<h3 style='margin: 5px 0;'>{line[4:]}</h3>"
@@ -125,7 +128,6 @@ def main():
                         bot_message += f"<p>{line}</p>"
 
                 bot_message += "</div></div>"
-
                 st.markdown(bot_message, unsafe_allow_html=True)
 
 if __name__ == '__main__':
