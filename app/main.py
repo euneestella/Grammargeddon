@@ -45,11 +45,11 @@ def main():
 
     user_message = st.text_input("Enter a sentence or paragraph for revision:")
 
-    if st.button("Submit"):
-        if user_message:
-            response = run_ollama(user_message)
-            st.session_state.history.append(("User", user_message))
-            st.session_state.history.append(("Bot", response))
+    if user_message and (len(st.session_state.history) == 0 or st.session_state.history[-1][1] != user_message):
+        response = run_ollama(user_message)
+        st.session_state.history.append(("User", user_message))
+        st.session_state.history.append(("Bot", response))
+        st.session_state.user_message = ""
 
     st.markdown("""
     <style>
