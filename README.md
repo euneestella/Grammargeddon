@@ -30,9 +30,7 @@
     <br />
     <a href="http://example.com">View Demo</a>
     &middot;
-    <a href="http://example.com">Report Bug</a>
-    &middot;
-    <a href="http://example.com">Request Feature</a>
+    <a href="https://github.com/euneestella/Grammargeddon/issues">Report Issues</a>
   </p>
 </div>
 
@@ -100,7 +98,7 @@ streamlit run app/main.py
 - [ ] Add additional LLM prompt examples
   - [ ] Add LLM customizing option on streamlit
 
-See the [open issues](http://example.com) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/euneestella/Grammargeddon/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
