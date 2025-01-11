@@ -88,16 +88,24 @@ def main():
                     unsafe_allow_html=True
                 )
             else:
-                # Parse the structured response
+                bot_message = f"""
+                <div class='bot-message'>
+                    <div style='background-color: #fafafa; color: #212121; border-radius: 10px; padding: 10px; margin: 5px;'>
+                        <strong>{speaker}:</strong><br/>
+                """
+
                 response_lines = message.split("\n")
-                st.markdown(f"<div class='bot-message'><strong>{speaker}:</strong></div>", unsafe_allow_html=True)
                 for line in response_lines:
-                    if line.startswith("Overall Evaluation"):
-                        st.markdown(f"<div class='evaluation'>{line}</div>", unsafe_allow_html=True)
-                    elif line.startswith("Revision"):
-                        st.markdown(f"<div class='revision'>{line}</div>", unsafe_allow_html=True)
+                    if line.startswith("### "):
+                        bot_message += f"<h3 style='margin: 5px 0;'>{line[4:]}</h3>"
+                    elif line.startswith("- "):
+                        bot_message += f"<li>{line[2:]}</li>"
                     else:
-                        st.markdown(line, unsafe_allow_html=True)
+                        bot_message += f"<p>{line}</p>"
+
+                bot_message += "</div></div>"
+
+                st.markdown(bot_message, unsafe_allow_html=True)
 
 if __name__ == '__main__':
     main()
