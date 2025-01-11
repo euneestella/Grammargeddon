@@ -28,7 +28,7 @@
   <p align="center">
     Run your LLM Academic Revision Copilot locally for free!
     <br />
-    <a href="http://example.com">View Demo</a>
+    <a href="https://grammargeddon.streamlit.app">View Demo</a>
     &middot;
     <a href="https://github.com/euneestella/Grammargeddon/issues">Report Issues</a>
   </p>
