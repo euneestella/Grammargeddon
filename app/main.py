@@ -51,47 +51,68 @@ def main():
         st.session_state.history.append(("Bot", response))
         st.session_state.user_message = ""
 
+
     st.markdown("""
-    <style>
-    .user-message {
-        background-color: #e0e0e0;
-        color: #212121;
-        border-radius: 10px;
-        padding: 10px;
-        margin: 5px;
-        text-align: right;
-    }
-    .bot-message {
-        background-color: #fafafa;
-        color: #212121;
-        border-radius: 10px;
-        padding: 10px;
-        margin: 5px;
-        text-align: left;
-    }
-    .evaluation {
-        font-weight: bold;
-        color: #2c3e50;
-    }
-    .revision {
-        font-style: italic;
-        color: #34495e;
-    }
-    </style>
+        <style>
+        .user-message {
+            background-color: #007aff;
+            color: #fafafa;
+            border-radius: 15px;
+            padding: 10px 15px;
+            margin: 10px;
+            text-align: right;
+            max-width: 60%;
+            float: right;
+            clear: both;
+            position: relative;
+        }
+        .user-message::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -10px;
+            border-width: 10px;
+            border-style: solid;
+            border-color: #007aff transparent transparent transparent;
+            transform: translateY(-50%);
+        }
+        .bot-message {
+            background-color: #d8d8d8;
+            color: #212121;
+            border-radius: 15px;
+            padding: 10px 15px;
+            margin: 10px;
+            text-align: left;
+            max-width: 90%;
+            float: left;
+            clear: both;
+            position: relative;
+        }
+        .bot-message::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -10px;
+            border-width: 10px;
+            border-style: solid;
+            border-color: #e0e0e0 transparent transparent transparent;
+            transform: translateY(-50%);
+        }
+        </style>
     """, unsafe_allow_html=True)
 
     if st.session_state.history:
         for speaker, message in st.session_state.history:
             if speaker == "User":
                 st.markdown(
-                    f"<div class='user-message'><strong>{speaker}:</strong> {message}</div>",
+                    f"<div class='user-message'>{message}</div>",
                     unsafe_allow_html=True
                 )
             else:
                 bot_message = f"""
                 <div class='bot-message'>
-                    <div style='background-color: #fafafa; color: #212121; border-radius: 10px; padding: 10px; margin: 5px;'>
-                        <strong>{speaker}:</strong><br/>
+                    <div style='background-color: #d8d8d8; color: #212121; border-radius: 10px; padding: 10px; margin: 5px;'>
+                        <br/>
                 """
 
                 response_lines = message.split("\n")
