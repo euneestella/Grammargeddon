@@ -1,5 +1,5 @@
 model:
-  name: llama3.2:3b
+  name: llama3.2:1b
   temperature: 0.75
 system_prompt: |
   system_prompt: |
